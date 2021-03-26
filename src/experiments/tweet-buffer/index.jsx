@@ -12,6 +12,7 @@ import {
   Search,
   Twitter,
 } from '../../assets/icons/index';
+import { motion } from 'framer-motion';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -53,8 +54,8 @@ const TweetBuffer = () => {
             <Route exact path={path}>
               <div>
                 {stale && <NewPostButton onClick={update} />}
-                <div>
-                  {data?.tweets.map((tweet, index) => (
+                <motion.div animate transition={{ duration: 0.5 }}>
+                  {[...data?.tweets].reverse().map((tweet, index) => (
                     <Tweet
                       avatarUrl={tweet.avatarUrl}
                       name={tweet.name}
@@ -64,7 +65,7 @@ const TweetBuffer = () => {
                       key={index}
                     />
                   ))}
-                </div>
+                </motion.div>
               </div>
             </Route>
             <Route path={`${path}/search`}>
@@ -84,8 +85,8 @@ const TweetBuffer = () => {
   );
 };
 
-const NewPostButton = ({ onClick }) => (
-  <div className='new-post' onClick={onClick}>
+const NewPostButton = ({ onClick, className = 'new-post' }) => (
+  <div onClick={onClick} className={className}>
     <span>New Post</span>
   </div>
 );
@@ -111,7 +112,7 @@ const Footer = () => {
 };
 
 const Tweet = ({ avatarUrl, date, name, text, useName }) => (
-  <div className='tweet'>
+  <motion.div className='tweet'>
     <img src={avatarUrl} alt={name} loading='lazy' />
     <div className='tweet__content'>
       <h3>
@@ -119,7 +120,7 @@ const Tweet = ({ avatarUrl, date, name, text, useName }) => (
       </h3>
       <p>{text}</p>
     </div>
-  </div>
+  </motion.div>
 );
 
 export default TweetBuffer;
