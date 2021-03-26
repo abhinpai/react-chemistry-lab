@@ -1,0 +1,42 @@
+@mixin remove-btn-style {
+  background: transparent;
+  outline: none;
+  appearance: none;
+  border: none;
+}
+
+.motion-list {
+  top: 20% !important;
+  & ul {
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      background-color: #1a1b1f;
+      border-radius: 4px;
+      padding: 1rem;
+      color: white;
+      width: 100%;
+      margin: 12px 0;
+      line-height: 1.4rem;
+      user-select: none;
+
+      display: flex;
+      align-items: center;
+
+      button {
+        @include remove-btn-style();
+        margin-right: 1rem;
+        color: #ffcd2d;
+      }
+    }
+  }
+}
+
+.reload {
+  @include remove-btn-style();
+  float: right;
+  margin-bottom: 1rem;
+  color: #1a1b1f;
+  font-weight: 500;
+}
