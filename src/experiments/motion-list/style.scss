@@ -6,7 +6,14 @@
 }
 
 .motion-list {
-  top: 20% !important;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  margin: auto;
+  min-height: 100%;
+  justify-content: center;
+
   & ul {
     padding: 0;
 
@@ -15,28 +22,92 @@
       background-color: #1a1b1f;
       border-radius: 4px;
       padding: 1rem;
-      color: white;
+      color: #ffff;
       width: 100%;
       margin: 12px 0;
       line-height: 1.4rem;
-      user-select: none;
 
       display: flex;
       align-items: center;
 
+      & p {
+        &::selection {
+          color: #151515;
+          background: #ffcd2d;
+        }
+      }
+
       button {
         @include remove-btn-style();
         margin-right: 1rem;
-        color: #ffcd2d;
+        color: #687e94;
+        cursor: pointer;
+        width: 36px;
+        font-weight: bold;
+
+        &:hover,
+        &:focus {
+          color: #ffcd2d;
+        }
+
+        & .votes {
+          display: inline-block;
+          position: relative;
+          text-align: center;
+          width: 100%;
+          height: 16px;
+        }
+      }
+    }
+
+    button .vote .number {
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .number {
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .comple-task {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 1000ms ease-in;
+
+    &:hover {
+      svg path {
+        fill: #ffcd2d;
       }
     }
   }
+
+  .no-pending-items {
+    background-color: #d4d4d454;
+    border-radius: 4px;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+    margin-top: 1rem;
+  }
+}
+
+.increment-span {
+  opacity: 0;
+  margin-left: 4px;
 }
 
 .reload {
   @include remove-btn-style();
-  float: right;
-  margin-bottom: 1rem;
   color: #1a1b1f;
   font-weight: 500;
+  width: fit-content;
+  margin-left: auto;
+  cursor: pointer;
 }
