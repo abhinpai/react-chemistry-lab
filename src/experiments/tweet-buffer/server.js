@@ -1,6 +1,6 @@
 import { createServer, Model, Factory, trait } from 'miragejs';
 import { add, parseISO } from 'date-fns';
-import faker, { image, name, internet, lorem } from 'faker';
+import faker, { name, internet, lorem, random } from 'faker';
 import Avatar from '../../assets/avatar.png';
 
 faker.seed(123);
@@ -14,6 +14,9 @@ let server = createServer({
 
   factories: {
     tweet: Factory.extend({
+      id() {
+        return random.uuid();
+      },
       name() {
         return name.findName();
       },

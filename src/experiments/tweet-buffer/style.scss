@@ -4,14 +4,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 4rem;
 
   & .new-post {
     display: flex;
-    position: sticky;
+    position: fixed;
     justify-content: center;
     align-items: center;
     width: 100%;
-    top: 5rem;
+    top: 8rem;
+    left: 0;
     z-index: 100;
     transition: all 0.5s ease;
 
@@ -33,32 +35,55 @@
   transform: translateY(0);
 }
 
-.tweet {
-  display: flex;
-  padding: 0.8rem;
-  border-bottom: 1px solid #0000001a;
-  & img {
-    height: 2rem;
-    border-radius: 50%;
-  }
+.tweet-list {
+  padding: 0;
+  & .tweet {
+    display: flex;
+    padding: 0.8rem;
+    border-bottom: 1px solid #0000001a;
+    list-style-type: none;
+    & img {
+      height: 2rem;
+      border-radius: 50%;
+    }
 
-  &__content {
-    margin: 0 1rem;
+    &__content {
+      margin: 0 1rem;
 
-    & h3 {
-      font-size: 15px;
-      font-weight: 500;
-      & span {
-        font-size: 10px;
+      & h3 {
+        font-size: 15px;
+        font-weight: 500;
+        & span {
+          font-size: 10px;
+          font-weight: 300;
+          color: #a1a0a0;
+        }
+      }
+
+      & p {
+        margin-top: 4px;
+        font-size: 14px;
         font-weight: 300;
-        color: #a1a0a0;
       }
     }
+  }
+}
 
-    & p {
-      margin-top: 4px;
-      font-size: 14px;
-      font-weight: 300;
-    }
+.loader {
+  height: 30px;
+  width: 30px;
+  border: 2px solid #1ea1f0;
+  border-radius: 50%;
+  border-top: 2px solid #ffff;
+  animation: loading 1s infinite linear;
+  left: 47% !important;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
