@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import Home from './page/Home';
-import { TweetBuffer, MotionList } from './experiments/index';
+import { TweetBuffer, MotionList, TweeterFramer } from './experiments/index';
 import './index.scss';
 
 ReactDOM.render(
@@ -21,6 +21,9 @@ ReactDOM.render(
         </Route>
         <Route path='/motionlist'>
           <MotionList />
+        </Route>
+        <Route path='/tweetermotion'>
+          < TweeterFramer/>
         </Route>
       </Switch>
     </Router>
