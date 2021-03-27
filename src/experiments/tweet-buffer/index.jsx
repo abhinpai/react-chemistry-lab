@@ -14,7 +14,9 @@ import {
 
 const TweetBuffer = () => {
   let { path } = useRouteMatch();
-  let { data, error, stale, update } = useBufferedTweets('/api/tweets');
+  let { mainRef, data, error, stale, update } = useBufferedTweets(
+    '/api/tweets'
+  );
 
   useEffect(() => {
     setInterval(() => {
@@ -24,7 +26,7 @@ const TweetBuffer = () => {
 
   return (
     <section className='tweerbuffer'>
-      <div className='mobile-frame'>
+      <div className='mobile-frame' ref={mainRef}>
         <Header />
         {!data ? (
           <Loader />
@@ -32,11 +34,16 @@ const TweetBuffer = () => {
           <Switch>
             <Route exact path={path}>
               {stale && <NewPostButton onClick={update} />}
-              <ul className='tweet-list'>
+              <motion.ul
+                initial={{ y: -50 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.5 }}
+                className='tweet-list'
+              >
                 {[...data?.tweets].reverse().map((tweet) => (
                   <Tweet {...tweet} key={tweet.id} />
                 ))}
-              </ul>
+              </motion.ul>
             </Route>
             <Routes path={`${path}/search`} content='Search' />
             <Routes path={`${path}/notification`} content='Notification' />

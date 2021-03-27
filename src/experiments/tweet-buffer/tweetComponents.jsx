@@ -9,9 +9,10 @@ import {
 } from '../../assets/icons/index';
 import { Link } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
+import { motion } from 'framer-motion';
 
-export const Tweet = ({ avatarUrl, date, name, text, useName }) => (
-  <li className='tweet'>
+export const Tweet = ({ avatarUrl, date, name, text }) => (
+  <motion.li layout transition={{ duration: 0.5 }} className='tweet'>
     <img src={avatarUrl} alt={name} loading='lazy' />
     <div className='tweet__content'>
       <h3>
@@ -19,13 +20,19 @@ export const Tweet = ({ avatarUrl, date, name, text, useName }) => (
       </h3>
       <p>{text}</p>
     </div>
-  </li>
+  </motion.li>
 );
 
 export const NewPostButton = ({ onClick, className = 'new-post' }) => (
-  <div onClick={onClick} className={className}>
+  <motion.div
+    initial={{ y: -40, opacity: 0.2 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ duration: 0.3 }}
+    onClick={onClick}
+    className={className}
+  >
     <span>New Post</span>
-  </div>
+  </motion.div>
 );
 
 export const Header = () => (
@@ -34,9 +41,7 @@ export const Header = () => (
   </header>
 );
 
-export const Loader = () => (
-  <div className="loader center"></div>
-)
+export const Loader = () => <div className='loader center'></div>;
 
 export const Footer = () => {
   let { url } = useRouteMatch();
