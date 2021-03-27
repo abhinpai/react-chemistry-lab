@@ -5,34 +5,34 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { upvoteIcon, closeIcon } from './icons';
 
 const posts = [
-//   {
-//     id: random.uuid(),
-//     post: lorem.sentence(),
-//     vote: 0,
-//     completed: false,
-//   },
   {
     id: random.uuid(),
-    post: 'Amazing content Sid 🙌🏽',
-    vote: 100,
+    post: lorem.sentence(),
+    vote: 0,
     completed: false,
   },
   {
     id: random.uuid(),
-    post: 'Very satisfying to work on interactive UI',
-    vote: 100,
+    post: lorem.sentence(),
+    vote: 0,
     completed: false,
   },
   {
     id: random.uuid(),
-    post: 'Matt Perry and the whole Framer Motion team you guys are awesome ❤️',
-    vote: 100,
+    post: lorem.sentence(),
+    vote: 0,
     completed: false,
   },
   {
     id: random.uuid(),
-    post: 'Excited to enroll in the full-fledge course of Interactive React ',
-    vote: 100,
+    post: lorem.sentence(),
+    vote: 0,
+    completed: false,
+  },
+  {
+    id: random.uuid(),
+    post: lorem.sentence(),
+    vote: 0,
     completed: false,
   },
 ];
@@ -82,16 +82,26 @@ function MotionList() {
                   {upvoteIcon}
                   <span className='votes'>
                     <AnimatePresence>
-                      <motion.span
+                      {/* <motion.span
                         key={post.vote}
                         className='number'
                         initial={{ y: 4, opacity: 0.5, scale: 0.5 }}
                         animate={{ y: 0, opacity: 1, scale: 1 }}
                         exit={{ y: -4, scale: 0.5, opacity: 0 }}
                         style={{ position: 'absolute' }}
+                      > */}
+                      <span>{post.vote}</span>
+                      <motion.span
+                        key={post.vote}
+                        className='increment'
+                        initial={{ x: 4, opacity: 0.5 }}
+                        animate={{ x: -10, opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        style={{ position: 'absolute' }}
                       >
-                        {post.vote}
+                        +
                       </motion.span>
+                      {/* </motion.span> */}
                     </AnimatePresence>
                   </span>
                 </button>
